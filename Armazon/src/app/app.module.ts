@@ -9,6 +9,8 @@ import { RegistroComponent } from './pagina/registro/registro.component';
 import { CreacionProductoComponent } from './pagina/creacion-producto/creacion-producto.component'
 import { FavoritoComponent } from './pagina/favorito/favorito.component';
 import { ProductoComponent } from './pagina/producto/producto.component';
+import { MyCartComponent } from './pagina/my-cart/my-cart.component';
+
 
 
 
@@ -21,7 +23,8 @@ import { ProductoComponent } from './pagina/producto/producto.component';
     RegistroComponent,
     CreacionProductoComponent,
     FavoritoComponent,
-    ProductoComponent
+    ProductoComponent,
+    MyCartComponent
   ],
   imports: [
     BrowserModule,

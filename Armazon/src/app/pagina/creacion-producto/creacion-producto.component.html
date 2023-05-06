@@ -1,7 +1,7 @@
 <form #f="ngForm" (ngSubmit)="crearProducto()">
     <div>
         <label>Nombre: </label>
-        <input type="text" name="nombre" [(ngModel)]="producto.nombre" required />
+        <input type="text" name="nombre" [(ngModel)]="producto.productoDTO.nombre" required />
     </div>
     <div>
         <label>Descripcion: </label>
@@ -21,9 +21,16 @@
     </div>
     <div>
         <label>Categoría: </label>
-        <select name="categoria" [(ngModel)]="producto.categoria" required>
+        <select name="categoria" [(ngModel)]="producto.productoDTO.categoria" required>
             <option value="" selected>Seleccione una categoría</option>
             <option [value]="i+1" *ngFor="let item of categorias; index as i">{{item}}</option>
+        </select>
+    </div>
+    <div>
+        <label>Ciudad: </label>
+        <select name="ciudad" [(ngModel)]="producto.productoDTO.ciudad" required>
+            <option value="" selected>Seleccione una ciudad</option>
+            <option [value]="i+1" *ngFor="let item of ciudades; index as i">{{item}}</option>
         </select>
     </div>
     <button type="submit" [disabled]="f.invalid">Crear nuevo producto</button>
