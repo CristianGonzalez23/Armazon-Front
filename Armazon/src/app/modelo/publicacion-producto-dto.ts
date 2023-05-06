@@ -4,5 +4,5 @@ export class PublicacionProductoDTO {
     precio: number = 0;
     unidades: number = 0;
     imagen: string[] = [];
-    categoria: string = "";
+    categoria: string[] = [];
 }
