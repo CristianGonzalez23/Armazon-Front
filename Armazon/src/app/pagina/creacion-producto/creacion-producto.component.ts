@@ -16,6 +16,8 @@ export class CreacionProductoComponent {
 
   //MENU DE CATEGORIAS
   categorias: string[] = [];
+  categoriasSeleccionadas: string[] = [];
+  categoriaSeleccionada: string | null = null;
   constructorCat() {
     this.categorias = [];
   }
@@ -74,6 +76,20 @@ export class CreacionProductoComponent {
       console.log(files);
     }
   }
+
+  agregarCategoria() {
+    if (this.categoriaSeleccionada && !this.categoriasSeleccionadas.includes(this.categoriaSeleccionada)) {
+        this.categoriasSeleccionadas.push(this.categoriaSeleccionada);
+    }
+  }
+
+  eliminarCategoria(categoria: string) {
+    const index = this.categoriasSeleccionadas.indexOf(categoria);
+    if (index !== -1) {
+      this.categoriasSeleccionadas.splice(index, 1);
+    }
+  }
+
 
   public crearProducto() {
     if (this.archivos != null && this.archivos.length > 0) {

@@ -21,10 +21,19 @@
     </div>
     <div>
         <label>Categoría: </label>
-        <select name="categoria" [(ngModel)]="producto.productoDTO.categoria" required>
+        <select name="categoria" [(ngModel)]="categoriaSeleccionada" required>
             <option value="" selected>Seleccione una categoría</option>
             <option [value]="i+1" *ngFor="let item of categorias; index as i">{{item}}</option>
         </select>
+        <button (click)="agregarCategoria()">Agregar categoría</button>
+        <ul>
+            <li *ngFor="let categoria of categoriasSeleccionadas">{{categoria}}</li>
+        </ul>
+        <ul>
+            <li *ngFor="let categoria of categoriasSeleccionadas">
+                {{categoria}} <button (click)="eliminarCategoria(categoria)">Eliminar</button>
+            </li>
+        </ul>
     </div>
     <div>
         <label>Ciudad: </label>
