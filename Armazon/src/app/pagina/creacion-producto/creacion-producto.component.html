@@ -23,24 +23,27 @@
         <label>Categoría: </label>
         <select name="categoria" [(ngModel)]="categoriaSeleccionada" required>
             <option value="" selected>Seleccione una categoría</option>
-            <option [value]="i+1" *ngFor="let item of categorias; index as i">{{item}}</option>
+            <option [value]="item" *ngFor="let item of categorias">{{item}}</option>
         </select>
-        <button (click)="agregarCategoria()">Agregar categoría</button>
-        <ul>
-            <li *ngFor="let categoria of categoriasSeleccionadas">{{categoria}}</li>
-        </ul>
+        <button type="button" (click)="agregarCategoria()">Agregar categoría</button>
         <ul>
             <li *ngFor="let categoria of categoriasSeleccionadas">
-                {{categoria}} <button (click)="eliminarCategoria(categoria)">Eliminar</button>
+                {{categoria}} <button type="button" (click)="eliminarCategoria(categoria)">Eliminar</button>
             </li>
         </ul>
     </div>
     <div>
         <label>Ciudad: </label>
-        <select name="ciudad" [(ngModel)]="producto.productoDTO.ciudad" required>
+        <select name="ciudad" [(ngModel)]="ciudadSeleccionada" required>
             <option value="" selected>Seleccione una ciudad</option>
-            <option [value]="i+1" *ngFor="let item of ciudades; index as i">{{item}}</option>
+            <option [value]="item" *ngFor="let item of ciudades">{{item}}</option>
         </select>
+        <button type="button" (click)="agregarCiudad()">Agregar ciudad</button>
+        <ul>
+            <li *ngFor="let ciudad of ciudadesSeleccionadas">
+                {{ciudad}} <button type="button" (click)="eliminarCiudad(ciudad)">Eliminar</button>
+            </li>
+        </ul>
     </div>
     <button type="submit" [disabled]="f.invalid">Crear nuevo producto</button>
 </form>

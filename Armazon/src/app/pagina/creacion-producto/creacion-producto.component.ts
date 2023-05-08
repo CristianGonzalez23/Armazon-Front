@@ -12,36 +12,34 @@ export class CreacionProductoComponent {
   producto: PublicacionProductoDTO;
   constructor() {
     this.producto = new PublicacionProductoDTO();
+    this.categorias = [];
+    this.ciudades = [];
   }
 
   //MENU DE CATEGORIAS
   categorias: string[] = [];
   categoriasSeleccionadas: string[] = [];
   categoriaSeleccionada: string | null = null;
-  constructorCat() {
-    this.categorias = [];
-  }
 
-     obtenerCat():void {
-      this.categorias.push('Tecnología');
+  obtenerCat(): void {
+    this.categorias.push('Tecnología');
     this.categorias.push('Hogar');
     this.categorias.push('Deportes');
     this.categorias.push('Moda');
     this.categorias.push('Mascotas');
- 
-     }
+  }
 
   //MENU DE CIUDADES
   ciudades: string[] = [];
-  constructorCiu() {
-    this.ciudades = [];
-  }
+  ciudadesSeleccionadas: string[] = [];
+  ciudadSeleccionada: string | null = null;
 
   ngOnInit(): void {
     this.obtenerCiudades();
     this.obtenerCat();
   }
-  obtenerCiudades(): void{
+
+  obtenerCiudades(): void {
     this.ciudades.push('Bogota');
     this.ciudades.push('Medellin');
     this.ciudades.push('Cali');
@@ -69,7 +67,6 @@ export class CreacionProductoComponent {
     this.ciudades.push('Mocoa');
   }
 
-
   onFileChange(event: any) {
     if (event.target.files.length > 0) {
       const files = event.target.files;
@@ -78,8 +75,11 @@ export class CreacionProductoComponent {
   }
 
   agregarCategoria() {
-    if (this.categoriaSeleccionada && !this.categoriasSeleccionadas.includes(this.categoriaSeleccionada)) {
-        this.categoriasSeleccionadas.push(this.categoriaSeleccionada);
+    if (
+      this.categoriaSeleccionada &&
+      !this.categoriasSeleccionadas.includes(this.categoriaSeleccionada)
+    ) {
+      this.categoriasSeleccionadas.push(this.categoriaSeleccionada);
     }
   }
 
@@ -90,6 +90,21 @@ export class CreacionProductoComponent {
     }
   }
 
+  agregarCiudad() {
+    if (
+      this.ciudadSeleccionada &&
+      !this.ciudadesSeleccionadas.includes(this.ciudadSeleccionada)
+    ) {
+      this.ciudadesSeleccionadas.push(this.ciudadSeleccionada);
+    }
+  }
+
+  eliminarCiudad(ciudad: string) {
+    const index = this.ciudadesSeleccionadas.indexOf(ciudad);
+    if (index !== -1) {
+      this.ciudadesSeleccionadas.splice(index, 1);
+    }
+  }
 
   public crearProducto() {
     if (this.archivos != null && this.archivos.length > 0) {

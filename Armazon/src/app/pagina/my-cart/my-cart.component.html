@@ -1,1 +1,37 @@
-<p>my-cart works!</p>
+<form #f="ngForm" (ngSubmit)="comprar()">
+    <div>
+        <label>Metodo: </label>
+        <select name="categoria" [(ngModel)]="categoriaSeleccionada" required>
+            <option value="" selected>Seleccione una categoría</option>
+            <option [value]="item" *ngFor="let item of categorias">{{item}}</option>
+        </select>
+        <button type="button" (click)="agregarCategoria()">Agregar categoría</button>
+        <ul>
+            <li *ngFor="let categoria of categoriasSeleccionadas">
+                {{categoria}} <button type="button" (click)="eliminarCategoria(categoria)">Eliminar</button>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <label>Codigo Usuario: </label>
+        <input type="email" name="email" [(ngModel)]="usuario.email" email required minlength="5" maxlength="50" />
+    </div>
+    <div>
+        <label>Dirección: </label>
+        <input type="text" name="direccion" [(ngModel)]="usuario.direccion" required minlength="3" maxlength="50" />
+    </div>
+    <div>
+        <label>Teléfono: </label>
+        <input type="text" name="telefono" [(ngModel)]="usuario.telefono" required minlength="2" maxlength="11" />
+    </div>
+    <div>
+        <label>Contraseña: </label>
+        <input type="password" name="password" [(ngModel)]="usuario.password" required minlength="2" maxlength="50" />
+    </div>
+    <div>
+        <label>Repetir contraseña: </label>
+        <input type="password" name="confirmaPassword" [(ngModel)]="usuario.confirmaPassword" required />
+        <p *ngIf="!sonIguales()">Las contraseñas no coinciden</p>
+    </div>
+    <button type="submit" [disabled]="f.invalid || !sonIguales()">Registrarse</button>
+</form>
