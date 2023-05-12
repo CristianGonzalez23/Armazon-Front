@@ -1,37 +1,46 @@
-<form #f="ngForm" (ngSubmit)="comprar()">
-    <div>
-        <label>Metodo: </label>
-        <select name="categoria" [(ngModel)]="categoriaSeleccionada" required>
-            <option value="" selected>Seleccione una categoría</option>
-            <option [value]="item" *ngFor="let item of categorias">{{item}}</option>
-        </select>
-        <button type="button" (click)="agregarCategoria()">Agregar categoría</button>
-        <ul>
-            <li *ngFor="let categoria of categoriasSeleccionadas">
-                {{categoria}} <button type="button" (click)="eliminarCategoria(categoria)">Eliminar</button>
-            </li>
-        </ul>
-    </div>
-    <div>
-        <label>Codigo Usuario: </label>
-        <input type="email" name="email" [(ngModel)]="usuario.email" email required minlength="5" maxlength="50" />
-    </div>
-    <div>
-        <label>Dirección: </label>
-        <input type="text" name="direccion" [(ngModel)]="usuario.direccion" required minlength="3" maxlength="50" />
-    </div>
-    <div>
-        <label>Teléfono: </label>
-        <input type="text" name="telefono" [(ngModel)]="usuario.telefono" required minlength="2" maxlength="11" />
-    </div>
-    <div>
-        <label>Contraseña: </label>
-        <input type="password" name="password" [(ngModel)]="usuario.password" required minlength="2" maxlength="50" />
-    </div>
-    <div>
-        <label>Repetir contraseña: </label>
-        <input type="password" name="confirmaPassword" [(ngModel)]="usuario.confirmaPassword" required />
-        <p *ngIf="!sonIguales()">Las contraseñas no coinciden</p>
-    </div>
-    <button type="submit" [disabled]="f.invalid || !sonIguales()">Registrarse</button>
-</form>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th></th>
+        <th style="width: 40%;">Producto</th>
+        <th style="width: 20%;">Precio</th>
+        <th style="width: 20%;">Unidades</th>
+        <th style="width: 20%;">Subtotal</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of productos">
+        <td></td>
+        <td>
+          <div class="d-flex text-start align-items-center">
+            <div class="col-4 me-3 ms-3">
+              <img [src]="item.producto.imagenes[0]" width="100%" />
+            </div>
+            <span class="col-8">{{item.producto.nombre}}</span>
+          </div>
+        </td>
+        <td class="align-middle">
+          <span>$ {{item.producto.precio}}</span>
+        </td>
+        <td class="align-middle">
+          <div class="input-group">
+            <button class="btn btn-outline-secondary" type="button" (click)="item.unidades = item.unidades - 1; calcularValor()">
+              -
+            </button>
+            <input type="number" name="unidades" class="form-control text-center" [(ngModel)]="item.unidades" min="1" (ngModelChange)="calcularValor()" />
+            <button class="btn btn-outline-secondary" type="button" (click)="item.unidades = item.unidades + 1; calcularValor()">
+              +
+            </button>
+          </div>
+        </td>
+        <td class="align-middle">
+          <span>$ {{calcularValor(item.producto.precio, item.cantidad)}}</span>
+        </td>
+        <td class="align-middle">
+          <button class="btn btn-danger" (click)="eliminarProducto(item)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  

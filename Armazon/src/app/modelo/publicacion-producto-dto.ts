@@ -9,18 +9,12 @@ export class PublicacionProductoDTO {
   codigoProducto: number = 0;
 
   productoDTO: ProductoDTO = new ProductoDTO(
-    'nombre1',
+    'nombre',
     ['imagen1'],
     ['categoria1'],
     ['ciudad1']
   );
 
-  /*
-  productoDTO: ProductoDTO = {
-    nombre: "",
-    imagen: [],
-    categoria: [],
-    ciudad: [],
-  };*/
   comentarioDTO: any[] = [];
+
 }
